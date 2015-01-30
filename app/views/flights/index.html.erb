@@ -1,7 +1,11 @@
 <h1> Flights! </h1>
-<% form_tag flights_path, :method => 'get' do %>
-	<p>
-		Departing Airport: <%= select_tag(:departing_airport_id, options_for_select(@airport_options)) %>
-		Arriving Airport: <%= select_tag(:arriving_airport_id, options_for_select(@airport_options)) %>
-	</p>
+<%= form_tag flights_path, :method => 'get' do %>
+  
+  <%= select_tag(:departing_airport,      options_for_select(@airport_options),   prompt: "Departing Airport" )  %>
+  <%= select_tag(:arriving_airport,       options_for_select(@airport_options),   prompt: "Arriving Airport"  )  %>
+  <%= select_tag(:departure_date,         options_for_select(@departure_options), prompt: "Departure Date"    )  %>
+  <%= select_tag(:passengers,             options_for_select(@passenger_options), prompt: "Passengers"        )  %>
+
+  <%= submit_tag("Search Flights") %>
+
 <% end %>
