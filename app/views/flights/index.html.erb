@@ -9,3 +9,10 @@
   <%= submit_tag("Search Flights") %>
 
 <% end %>
+
+	<% @flights.each do |flight| %>
+	  <p>From: <%= Airport.find(flight.departing_airport_id).code   %>   </p>
+	  <p>To:   <%= Airport.find(flight.arriving_airport_id).code    %>   </p>
+	  <p>Time:  <%= flight.departure.strftime('%B %d, %Y departure at %H:%M') %>   </p>
+	<% end %>
+
