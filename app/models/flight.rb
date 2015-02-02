@@ -1,6 +1,7 @@
 class Flight < ActiveRecord::Base
   belongs_to :arriving_airport,   class_name: "Airport"
   belongs_to :departing_airport,  class_name: "Airport"
+  has_many   :bookings
 
   def self.search(params)
   end
@@ -17,7 +18,7 @@ class Flight < ActiveRecord::Base
   def self.search(params)
     Flight.where(arriving_airport_id:  params[:arriving_airport],
                  departing_airport_id: params[:departing_airport],
-                 departure:            Flight.range(params[:departure_date]))                            
+                 departure:            Flight.range(params[:departure_date]) )                            
   end
 
   def self.range(date)
