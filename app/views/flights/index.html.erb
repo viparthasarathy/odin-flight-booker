@@ -13,7 +13,8 @@
 <% unless @flights.empty? %>
 	<%= form_tag new_booking_path, :method => 'get' do %>
 		<% @flights.each do |flight| %>
-		  <p> <%= radio_button_tag(:flight_id, flight.id) %>
+		  <p>     <%= radio_button_tag(:flight_id, flight.id) %>
+		  	Flight ID: <%= flight.id %>
 		  	From: <%= Airport.find(flight.departing_airport_id).code   %>   
 		     To:   <%= Airport.find(flight.arriving_airport_id).code    %>   
 		     Time:  <%= flight.departure.strftime('%B %d, %Y departure at %H:%M') %>   </p>

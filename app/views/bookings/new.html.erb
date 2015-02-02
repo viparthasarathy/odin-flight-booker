@@ -1,0 +1,18 @@
+<p>Flight #<%= @flight.id %> departing <%=@flight.departure.strftime('%B, %d, %Y at %H:%M') %> from <%= @flight.departing_airport.code %> to <%= @flight.arriving_airport.code %>
+</p>
+
+
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, :value => @flight.id %>
+	
+
+  <%= f.fields_for :passengers do |p| %>
+    <p><%= p.label :name, "Passenger Name" %>
+    	<%= p.text_field :name  %>
+    	<%= p.label :email, "Contact Email" %>
+    <%= p.text_field :email %></p>
+  <% end %>
+
+  <%= f.submit "Confirm Details" %>
+
+<% end %>
