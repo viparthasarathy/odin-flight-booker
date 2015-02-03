@@ -1,6 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  
+
+  <body>
+
 <p> Hi <%= @passenger.name %>!</p>
 
 <p>Thanks for booking with us. We hope you enjoy your flight. Your travel information is attached below.</p>
 
 <p>Flight #<%= @booking.flight_id %> is departing from <%= @booking.flight.departing_airport.code%> to <%= @booking.flight.arriving_airport.code %> on <%= @booking.flight.departure.strftime('%B %m, %Y at %H:%M') %>.</p>
 
+  </body>
+</html>
