@@ -1,7 +1,8 @@
-<p>Flight #<%= @flight.id %> departing <%=@flight.departure.strftime('%B, %d, %Y at %H:%M') %> from <%= @flight.departing_airport.code %> to <%= @flight.arriving_airport.code %>
-</p>
+<h1>Flight #<%= @flight.id %> (<%= @flight.departing_airport.code %>-<%= @flight.arriving_airport.code %>) departing <%=@flight.departure.strftime('%B, %d, %Y at %H:%M') %>
+</h1>
 
-
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
 <%= form_for @booking do |f| %>
   <%= f.hidden_field :flight_id, :value => @flight.id %>
 	
@@ -13,6 +14,8 @@
     <%= p.text_field :email %></p>
   <% end %>
 
-  <%= f.submit "Confirm Details" %>
+  <%= f.submit "Confirm Details", class: "btn btn-danger" %>
 
 <% end %>
+  </div>
+</div>

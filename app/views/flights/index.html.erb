@@ -1,26 +1,61 @@
-<h1> Flights! </h1>
+
 <%= form_tag flights_path, :method => 'get' do %>
-  
+
+
+		<h1> Flight Booking </h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+
+    
   <%= select_tag(:departing_airport,      options_for_select(@airport_options),   prompt: "Departing Airport" )  %>
   <%= select_tag(:arriving_airport,       options_for_select(@airport_options),   prompt: "Arriving Airport"  )  %>
   <%= select_tag(:departure_date,         options_for_select(@departure_options), prompt: "Departure Date"    )  %>
   <%= select_tag(:passengers,             options_for_select(@passenger_options), prompt: "Passengers"        )  %> 
 
-  <%= submit_tag("Search Flights") %>
+
+<%= submit_tag("Search Flights", class: "btn btn-info") %>
 
 <% end %>
 
 <% unless @flights.empty? %>
+  <table class="table table-striped">
+	  <thead>
+		  <tr>
+		  	<th>Select</th>
+		  	<th>Flight #</th>
+		  	<th>Origin</th>
+		  	<th>Destination</th>
+		  	<th>Departure</th>
+		  	<th>Duration</th>
+		  </tr>
+		</thead>
 	<%= form_tag new_booking_path, :method => 'get' do %>
+	  <tbody>
 		<% @flights.each do |flight| %>
-		  <p>     <%= radio_button_tag(:flight_id, flight.id) %>
-		  	Flight ID: <%= flight.id %>
-		  	From: <%= Airport.find(flight.departing_airport_id).code   %>   
-		     To:   <%= Airport.find(flight.arriving_airport_id).code    %>   
-		     Time:  <%= flight.departure.strftime('%B %d, %Y departure at %H:%M') %>   </p>
+		
+			<tr>
+		    <td><%= radio_button_tag(:flight_id, flight.id) %></td>
+		  	<td><%= flight.id %></td>
+		  	<td><%= Airport.find(flight.departing_airport_id).code   %></td>   
+		    <td><%= Airport.find(flight.arriving_airport_id).code    %></td>   
+		    <td><%= flight.departure.strftime('%B %d, %Y at %H:%M') %></td>
+		    <td><%= flight.duration %> hours</td>
+		  </tr>
+		  
 		<% end %>
+    </tbody> 
+	</table>
 		<%= hidden_field_tag :passengers, params[:passengers] %>
-		<%= submit_tag "Select Flight" %>
+		<%= submit_tag "Select Flight", class: "btn btn-success" %>
 	<% end %>
+
 <% end %>
+  </div>
+</div>
+
+
+
+  
+
+
 
