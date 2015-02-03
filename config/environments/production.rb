@@ -78,6 +78,7 @@ Rails.application.configure do
 
   # Mail configuration.
 
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'https://intense-retreat-7685.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
