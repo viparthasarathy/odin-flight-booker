@@ -9,8 +9,7 @@ class BookingsController < ApplicationController
 	def create
 		@booking = Booking.new(booking_params)
 		if @booking.save
-			#mailer removed for heroku
-			#@booking.passengers.each { |passenger| PassengerMailer.booking_confirmation(passenger).deliver }
+			@booking.passengers.each { |passenger| PassengerMailer.booking_confirmation(passenger).deliver }
 			redirect_to @booking
 		else
 			render 'new'
