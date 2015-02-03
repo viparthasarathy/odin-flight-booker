@@ -31,6 +31,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 group :development, :test do 
   gem 'sqlite3'
   gem 'spring'
+  gem 'letter_opener'
 end
 
 group :production do
